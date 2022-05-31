@@ -1,0 +1,46 @@
+%transition {
+  transition: 0.3s;
+}
+%sectionPadding {
+  padding: {
+    top: 4rem;
+    bottom: 4rem;
+  }
+}
+.big-header {
+  text-align: center;
+  padding-bottom: 3rem;
+  h2 {
+    font-size: 10.125rem;
+    color: rgb(235, 236, 237);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.625rem;
+    @include responMedia(mobile) {
+      font-size: 4.125rem;
+      letter-spacing: -0.2rem;
+    }
+    @include responMedia(small) {
+      letter-spacing: -0.55rem;
+    }
+    & + p {
+      font-size: 1.5625rem;
+      color: $pColor;
+      margin-top: -4rem;
+      line-height: 1.4;
+      letter-spacing: -2px;
+      @include responMedia(mobile) {
+        font-size: 1rem;
+        margin-top: -1.5rem;
+      }
+    }
+  }
+}
+@import "../layout/header";
+@import "./components/landing";
+@import "./components/features";
+@import "./components/services";
+@import "./components/portfolio";
+@import "./components/about";
+@import "./components/contact";
+@import "../layout/footer";

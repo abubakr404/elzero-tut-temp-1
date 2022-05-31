@@ -1,0 +1,22 @@
+.features {
+  .container {
+    @include responGridCol;
+  }
+  .feature {
+    padding: 4rem 1.25rem;
+    text-align: center;
+    i {
+      color: $altColor;
+    }
+    h3 {
+      font-weight: 800;
+      margin: 2rem 0 1rem;
+    }
+    p {
+      color: $pColor;
+    }
+    &:nth-of-type(2) {
+      box-shadow: 0.25rem 0.25rem 0.4rem #7f7f7f3d;
+    }
+  }
+}

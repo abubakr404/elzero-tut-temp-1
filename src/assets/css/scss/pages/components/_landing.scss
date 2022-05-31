@@ -1,0 +1,25 @@
+.landing {
+  height: calc(100vh - 3.75rem);
+  background: {
+    image: url(../images/landing.png);
+    repeat: no-repeat;
+    size: cover;
+  }
+  position: relative;
+  @include responMedia(mobile) {
+    height: calc(50vh - 3.75rem);
+  }
+  .intro-text {
+    @include aCenter;
+    text-align: center;
+    width: 20rem;
+    max-width: 100%;
+  }
+  h1 {
+    font: {
+      weight: bold;
+      size: 2.5rem;
+    }
+    color: $altColor;
+  }
+}

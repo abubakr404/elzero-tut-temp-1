@@ -1,0 +1,61 @@
+header {
+  padding: 1.25rem;
+  .container {
+    @include fSpacer;
+  }
+  .logo {
+    width: 3.125rem;
+  }
+  .links {
+    position: relative;
+    &:hover {
+      span:nth-of-type(2) {
+        width: 100%;
+      }
+    }
+    ul {
+      @include ulRest;
+      position: absolute;
+      z-index: 1000;
+      right: 0;
+      top: calc(100% + 1rem);
+      min-width: 17.0625rem;
+      background-color: $mainColor;
+      &::after {
+        @include arrow(10px, $mainColor, top, end);
+      }
+      & li:not(:last-of-type) a {
+        border-bottom: 1px solid #0e2d33;
+      }
+      & a {
+        display: block;
+        text-decoration: none;
+        padding: 1rem;
+        color: $white;
+        @extend %transition;
+        &:hover {
+          color: $altColor;
+          padding-left: 1.75rem;
+        }
+      }
+    }
+    button {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      width: 1.6875rem;
+      border: none;
+      background-color: transparent;
+    }
+    span {
+      width: 100%;
+      background-color: $mainColor;
+      height: 0.0625rem;
+      &:nth-last-of-type(2) {
+        width: 65%;
+        @extend %transition;
+      }
+    }
+  }
+}

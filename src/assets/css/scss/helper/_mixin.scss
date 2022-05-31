@@ -1,0 +1,160 @@
+// mixin ulRest is mixin for rest the un order list
+
+@mixin ulRest {
+  list-style: none;
+  padding: 0;
+}
+
+// arrow mixin is genral mixin can make arrow in all direction and position
+// first param $width should be the size of arrow
+// the second param $color should be the color of arrow
+// the third param $direction should select the direction of arrow is in top or bottom or right or left
+// the fourth param $position should select the where position of arrow in the line
+// is the start or in the middle or in the end
+
+@mixin arrow($width: 1rem, $color: black, $direction: top, $position: center) {
+  content: "";
+  position: absolute;
+  border: $width solid;
+  @if $direction == top {
+    border-color: transparent transparent $color transparent;
+    top: $width * -2;
+  }
+  @elseif $direction == bottom {
+    border-color: $color transparent transparent;
+    bottom: $width * -2;
+  }
+  @elseif $direction == left {
+    border-color: transparent $color transparent transparent;
+    left: $width * -2;
+  }
+  @elseif $direction == right {
+    border-color: transparent transparent transparent $color;
+    right: $width * -2;
+  }
+
+  @if $position == end {
+    @if $direction == top or $direction == bottom {
+      right: $width / 2;
+    }
+    @elseif $direction == left or $direction == right {
+      top: $width / 2;
+    }
+  }
+  @elseif $position == start {
+    @if $direction == top or $direction == bottom {
+      left: $width / 2;
+    }
+    @elseif $direction == left or $direction == right {
+      bottom: $width / 2;
+    }
+  }
+  @elseif $position == center {
+    @if $direction == top or $direction == bottom {
+      right: 50%;
+      transform: translateX(50%);
+    }
+    @elseif $direction == left or $direction == right {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+}
+
+// mixin fCenter is mixin for make the selector flex and make content center
+
+@mixin fCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// mixin aCenter is mixin for make the selector in center of the screen by use position absolute
+
+@mixin aCenter {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+}
+
+// mixin fSpacer is mixin for make space between items in each direction by display the element flex
+
+@mixin fSpacer($direction: row, $alignCenter: true) {
+  display: flex;
+  flex-direction: if($direction == column, column, row);
+  justify-content: space-between;
+  @if $alignCenter != false {
+    align-items: center;
+  }
+}
+
+// mixin radiBox is mixin make the first element has radius border in two side and the last element
+// has two radius border in opsiet side
+// the prameter $radius for the value of the radius and the prameter $direction for the direction of box
+// vertecl or horizentl
+
+@mixin radiBox($radius, $direction: true) {
+  &:first-of-type {
+    border-radius: if($direction, $radius 0 0 $radius, $radius $radius 0 0);
+  }
+  &:last-of-type {
+    border-radius: if($direction, 0 $radius $radius 0, 0 0 $radius $radius);
+  }
+}
+
+// mixin responGridCol is mixin for control responsive of items in columns with screens
+
+@mixin responGridCol($min: 17rem, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min, 1fr));
+  gap: $gap;
+}
+
+// mixin responMedia is mixin for control responsive with screens
+
+@mixin responMedia($madia: mobile) {
+  @if $madia == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $madia == small {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  } @else if $madia == toSmall {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $madia == medium {
+    @media (min-width: 992px) and (max-width: 1199px) {
+      @content;
+    }
+  } @else if $madia == toMedium {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  } @else if $madia == medium {
+    @media (min-width: 992px) and (max-width: 1199px) {
+      @content;
+    }
+  } @else if $madia == large {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+// mixin madiaContainer is mixin for control content with all screens
+
+@mixin madiaContainer {
+  @include responMedia(small) {
+    width: 750px;
+  }
+  @include responMedia(medium) {
+    width: 970px;
+  }
+  @include responMedia(large) {
+    width: 1170px;
+  }
+}

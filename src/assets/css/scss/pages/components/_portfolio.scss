@@ -1,0 +1,24 @@
+.portfolio {
+  @extend %sectionPadding;
+  background-color: $sectionColor;
+  .content {
+    @include responGridCol;
+    margin-top: 4rem;
+  }
+  .card {
+    background-color: $white;
+    img {
+      max-width: 100%;
+    }
+    .info {
+      padding: 1.25rem;
+      @include responMedia(mobile) {
+        text-align: center;
+      }
+    }
+    p {
+      color: $pColor;
+      margin-top: 1rem;
+    }
+  }
+}
